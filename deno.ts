@@ -1,4 +1,4 @@
-const OPENAI_API_HOST = "api.groq.com";
+const OPENAI_API_HOST = "console.groq.com";
 
 Deno.serve(async (request) => {
   const url = new URL(request.url);
