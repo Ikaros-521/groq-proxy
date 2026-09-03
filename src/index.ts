@@ -7,6 +7,8 @@
  */
 
 const OPENAI_API_HOST = "api.groq.com";
+const UPSTREAM_USER_AGENT =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0";
 
 export default {
   async fetch(request, env, ctx): Promise<Response> {
@@ -22,9 +24,12 @@ export default {
       const newUrl = new URL(request.url);
       newUrl.hostname = OPENAI_API_HOST;
 
+      const headers = new Headers(request.headers);
+      headers.set("User-Agent", UPSTREAM_USER_AGENT);
+
       const modifiedRequest = new Request(newUrl, {
         method: request.method,
-        headers: request.headers,
+        headers,
         body: request.body,
       });
 
