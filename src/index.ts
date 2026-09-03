@@ -26,6 +26,11 @@ export default {
 
       const headers = new Headers(request.headers);
       headers.set("User-Agent", UPSTREAM_USER_AGENT);
+      headers.delete("cf-connecting-ip");
+      headers.delete("x-forwarded-for");
+      headers.delete("x-real-ip");
+      headers.delete("true-client-ip");
+      headers.delete("forwarded");
 
       const modifiedRequest = new Request(newUrl, {
         method: request.method,
