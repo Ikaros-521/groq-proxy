@@ -22,9 +22,18 @@ OpenAI/ChatGPT 的 API。
 或者，访问 https://deno.new 域名，把 deno.ts 复制到 Playground 中，点击 Play
 按钮。
 
-### CloudFlare
+### CloudFlare (wrangler)
 
-将 cloudflare.ts 复制到 CloudFlare Workers 中。
+在项目根目录执行：
+
+```bash
+npm install
+npx wrangler deploy
+```
+
+首次运行 `npx wrangler deploy` 会引导你登录 Cloudflare 并创建 Worker。
+部署成功后，wrangler 会输出形如 `https://groq-proxy.<your-subdomain>.workers.dev` 的地址，
+把它当作 `basePath` / `api_base` 即可。
 
 ## 使用
 
